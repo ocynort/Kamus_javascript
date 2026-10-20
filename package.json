@@ -1,5 +1,5 @@
 {
-  "name": "kamus-desktop",
+  "name": "kamus-Javascript",
   "version": "1.0.0",
   "description": "Kamus JavaScript offline untuk belajar sintaks di Linux Mint",
   "main": "main.js",
@@ -16,8 +16,8 @@
     "learning",
     "linux"
   ],
-  "author": "Kamus JavaScript Team <maintainer@example.invalid>",
-  "homepage": "https://kamus-javascript.invalid",
+  "author": "Nurdianyah Bur <ocy.nort@gmail.com>",
+  "homepage": "https://github.com/ocynort/Kamus_javascript",
   "license": "MIT",
   "devDependencies": {
     "electron": "^38.0.0",
