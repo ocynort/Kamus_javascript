@@ -1,0 +1,59 @@
+{
+  "name": "kamus-desktop",
+  "version": "1.0.0",
+  "description": "Kamus JavaScript offline untuk belajar sintaks di Linux Mint",
+  "main": "main.js",
+  "desktopName": "kamus-desktop",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder --linux",
+    "build:deb": "electron-builder --linux deb"
+  },
+  "keywords": [
+    "electron",
+    "javascript",
+    "learning",
+    "linux"
+  ],
+  "author": "Kamus JavaScript Team <maintainer@example.invalid>",
+  "homepage": "https://kamus-javascript.invalid",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.kamus.javascript",
+    "productName": "Kamus JavaScript",
+    "artifactName": "${name}-${version}-${arch}.${ext}",
+    "asar": true,
+    "files": [
+      "data/**/*",
+      "assets/**/*",
+      "index.html",
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "styles.css",
+      "playground-worker.js",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "syncDesktopName": true,
+      "category": "Education",
+      "icon": "assets/icon.png",
+      "synopsis": "Referensi sintaks JavaScript offline",
+      "description": "Kamus JavaScript offline dengan contoh kode, kuis, progres belajar, dan playground."
+    }
+  },
+  "allowScripts": {
+    "electron@38.8.6": true
+  }
+}

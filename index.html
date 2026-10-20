@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:;"
+    />
+    <title>Kamus JavaScript — Offline Reference</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">K</div>
+          <div>
+            <h1>Kamus JS</h1>
+            <p>JavaScript <span>•</span> Reference</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button id="playground-button" class="secondary-button" type="button">Playground</button>
+          <button id="quiz-button" class="quiz-button" type="button">Mulai kuis</button>
+          <div class="offline-status"><span class="status-dot"></span> Offline</div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="eyebrow">Teman belajar JavaScript</div>
+        <h2>Temukan sintaks JavaScript dengan cepat.</h2>
+        <p>Cari keyword, konsep, dan method JavaScript. Pelajari sintaksnya melalui penjelasan sederhana dan contoh kode.</p>
+        <label class="search-box" for="search-input">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" autocomplete="off" placeholder="Cari keyword atau sintaks, misalnya const, map(), async/await..." />
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="quick-searches">
+          <span>Coba cari:</span>
+          <button type="button" data-search="const">const</button>
+          <button type="button" data-search="map()">map()</button>
+          <button type="button" data-search="async/await">async/await</button>
+        </div>
+        <div id="recent-searches" class="recent-searches" hidden>
+          <span>Pencarian terakhir:</span>
+          <div id="history-list"></div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="sidebar">
+          <div class="view-switcher" role="tablist" aria-label="Tampilan entri">
+            <button id="all-view" class="view-tab active" type="button" data-view="all">Semua</button>
+            <button id="favorites-view" class="view-tab" type="button" data-view="favorites">Favorit <span id="favorite-count">0</span></button>
+          </div>
+          <div class="section-heading">
+            <h3 id="list-heading">Semua entri</h3>
+            <span id="result-count">0</span>
+          </div>
+          <div class="filter-row">
+            <label for="category-filter">Kategori</label>
+            <select id="category-filter">
+              <option value="all">Semua kategori</option>
+              <option value="keyword">Keyword dasar</option>
+              <option value="function">Function</option>
+              <option value="control-flow">Control flow</option>
+              <option value="array-method">Array method</option>
+              <option value="async">Asynchronous</option>
+              <option value="object">Object &amp; array</option>
+              <option value="operator">Operator</option>
+            </select>
+          </div>
+          <div id="word-list" class="word-list" aria-live="polite"></div>
+          <div class="progress-card">
+            <div class="progress-heading"><span>Progres belajar</span><strong id="progress-percent">0%</strong></div>
+            <div class="progress-bar"><span id="progress-bar-fill"></span></div>
+            <p id="progress-summary">Belum ada sesi kuis.</p>
+          </div>
+        </aside>
+
+        <article id="detail-panel" class="detail-panel">
+          <div class="empty-detail">
+            <div class="empty-icon" aria-hidden="true">Aa</div>
+            <h3>Pilih istilah untuk melihat detail</h3>
+            <p>Sintaks, penjelasan, dan contoh kode akan muncul di sini.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+    <div id="quiz-modal" class="modal" hidden aria-hidden="true">
+      <div class="modal-backdrop" data-close-quiz></div>
+      <section class="quiz-dialog" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
+        <div class="quiz-dialog-header">
+          <div>
+            <p class="eyebrow">Latihan cepat</p>
+            <h2 id="quiz-title">Kuis JavaScript</h2>
+          </div>
+          <button id="close-quiz" class="close-button" type="button" aria-label="Tutup kuis">×</button>
+        </div>
+        <div id="quiz-content"></div>
+      </section>
+    </div>
+    <div id="playground-modal" class="modal" hidden aria-hidden="true">
+      <div class="modal-backdrop" data-close-playground></div>
+      <section class="playground-dialog" role="dialog" aria-modal="true" aria-labelledby="playground-title">
+        <div class="playground-header">
+          <div>
+            <p class="eyebrow">Ruang latihan</p>
+            <h2 id="playground-title">Playground JavaScript</h2>
+          </div>
+          <button id="close-playground" class="close-button" type="button" aria-label="Tutup playground">×</button>
+        </div>
+        <p class="playground-help">Tulis kode JavaScript lalu jalankan untuk melihat hasilnya. Gunakan <code>console.log()</code> untuk mencetak output.</p>
+        <div class="editor-toolbar">
+          <span id="playground-status">Siap menjalankan kode</span>
+          <div>
+            <button id="clear-output" class="toolbar-button" type="button">Bersihkan output</button>
+            <button id="run-code" class="primary-button" type="button">▶ Jalankan</button>
+          </div>
+        </div>
+        <textarea id="code-editor" class="code-editor" spellcheck="false" aria-label="Editor kode JavaScript"></textarea>
+        <div class="console-heading"><span>Console output</span><span>JavaScript Worker</span></div>
+        <pre id="console-output" class="console-output">Output akan muncul di sini...</pre>
+      </section>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
