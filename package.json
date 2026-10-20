@@ -1,6 +1,6 @@
 {
   "name": "kamus-Javascript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Kamus JavaScript offline untuk belajar sintaks di Linux Mint",
   "main": "main.js",
   "desktopName": "kamus-desktop",

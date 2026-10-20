@@ -489,8 +489,9 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !playgroundModal.hidden) closePlayground();
 });
 
-try {
-  state.entries = window.dictionaryAPI.getEntries();
+async function initialize() {
+  try {
+    state.entries = await window.dictionaryAPI.getEntries();
   state.favorites = new Set(readStorage(STORAGE_KEYS.favorites, []));
   state.history = readStorage(STORAGE_KEYS.history, []);
   state.progress = { ...state.progress, ...readStorage(STORAGE_KEYS.progress, {}) };
@@ -501,4 +502,7 @@ try {
 } catch (error) {
   console.error('Gagal memuat data referensi:', error);
   wordList.innerHTML = '<div class="list-empty">Data referensi gagal dimuat.</div>';
+  }
 }
+
+initialize();

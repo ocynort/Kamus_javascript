@@ -1,5 +1,11 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+const fs = require('node:fs');
 const path = require('node:path');
+
+ipcMain.handle('get-dictionary', () => {
+  const filePath = path.join(app.getAppPath(), 'data', 'dictionary.json');
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+});
 
 function createWindow() {
   const window = new BrowserWindow({
